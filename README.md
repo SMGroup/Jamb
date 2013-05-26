@@ -46,3 +46,248 @@ Jamb
 Јамб е комбинација на пет или шест исти коцки.На јамб со пет исти коцки (не со единици) се прави збир и се додава бонус од 60 поени, а на јамб со шест исти коцки (не со единици) се запишува 100 поени. Има два екста јамба со пет единици и со шест единици. Јамбот со пет единици се вреднува 100 поени и се запишуваат 100 поени, а јамбот со шест единици се враднува 150 и се запишуваат 150 поени.
 Доколку играчот и после третото фрлање на коцките нема што да запише приморан е да шкртне некое од полињата.
 На крајот кога веќе нема празни полиња се прави вкупен збир од сите колони и се споредува реултатот со притивничкиот играч за да се дознае кој е победникот.
+
+
+Објаснување на кодот:
+
+Во апликацијата Јамб постојат вкупно 5 форми. Една форма е стартна, три форми се форми каде што се игра јамбот и петтата форма е форма за прокажување на резултатите.
+
+Стартна форма – StartForm.cs
+Форми за играње – GameForm.cs, GameForm2.cs, GameForm3.cs
+Форма со резултати – FinishForm.cs
+
+Во стартната форма (StartForm.cs) се внесува јачина на игра, број на играчи (во моментов е само за двајца), и имињата на играчите.
+
+Во зависност од која јачина ќе ја одберете таа форма ви се отвара. Ако одберете  Normal се отвара GameFrom.cs, ако одберете Medium се отвара GameForm2.cs, а ако одберете Hard се отвара GameForm3.cs. 
+
+GameForm.cs
+Променливи:            game, startForm, finishForm, 	
+Конструктор:	GameForm(int pCount, StartForm form)	Во завизност од бројот на играчи, така се креира објектот од класата (game)  
+Методи:	private Image ImageDice(int diceValue)	Према вредноста на коцките се прикажуваат сликите
+	Check(bool tr)	Проверува што вртиш (кој коцки ги вртиш)
+	GetContent(int m)	Према TabIndex-от на Textbox-от се запишува вредноста на добиенот резултат на коцките. За првиот играч со од 1 до 52, а за вториот од 121 до  172
+	SetButtonDesable(int m)	Се онеовозможуваат Textbox-овите според нивниот Tabindex
+	TotalCalculate()	Се собираат вредностите на на Textbox-овите на играчите
+Евенти: 	btnRoll_Click()	Во зависност кој е на ред ги врти коцките, три или пет пати
+	btnEndTurn_Click()	За да запише вредност во Texbox мора да кликне на тоа што сака да запише.
+	Клик Евенти (Click_Events)	При клик на Textbox-от се појавува вредност на свртените коцки
+	Leave_Events	При излегување на селектираниот Textbox се брипе вредноста
+
+
+GameForm2.cs
+Променливи:	game, startForm, finishForm, низи  NajavaP1, OdjavaP1, NajavaP2, OdjavaP2 и листи lNajavaP1, lNajavaP2	
+Конструктор:	GameForm(int pCount, StartForm form)	Во завизност од бројот на играчи, така се креира објектот од класата (game)  
+Методи:	private Image ImageDice(int diceValue)	Према вредноста на коцките се прикажуваат сликите
+	Check(bool tr)	Проверува што вртиш (кој коцки ги вртиш)
+	GetContent(int m)	Према TabIndex-от на Textbox-от се запишува вредноста на добиенот резултат на коцките. За првиот играч со од 1 до 72, а за вториот од 121 до  198
+	SetButtonDesable(int m)	Се онеовозможуваат Textbox-овите според нивниот Tabindex
+	TotalCalculate()	Се собираат вредностите на на Textbox-овите на играчите
+	SetNajavaEnableP1()
+SetOdjavaEnableP1()
+SetNajavaEnableP2()
+SetOdjavaEnableP2()	Према вредностите на индексите во низата така се оненозмножуваат Textbox-овите за најава и одјава
+Евенти: 	btnRoll_Click()	Во зависност кој е на ред ги врти коцките, три или пет пати
+	btnEndTurn_Click()	За да запише вредност во Texbox мора да кликне на тоа што сака да запише.
+	Клик Евенти (Click_Events)	При клик на Textbox-от се појавува вредност на свртените коцки
+	Leave_Events	При излегување на селектираниот Textbox се брипе вредноста
+	cbNajava_P1_SelectedIndexChanged()
+cbNajava_P2_SelectedIndexChanged()	При одбирање на итем од листата се онеобозможуваат сите Textbox-ови освен оној кој сте го одбрале 
+
+
+GameForm3.cs
+Променливи:	game, startForm, finishForm, низи  NajavaP1, OdjavaP1, NajavaP2, OdjavaP2 и листи lNajavaP1, lNajavaP2,	
+Конструктор:	GameForm(int pCount, StartForm form)	Во завизност од бројот на играчи, така се креира објектот од класата (game)  
+Методи:	private Image ImageDice(int diceValue)	Према вредноста на коцките се прикажуваат сликите
+	Check(bool tr)	Проверува што вртиш (кој коцки ги вртиш)
+	GetContent(int m)	Према TabIndex-от на Textbox-от се запишува вредноста на добиенот резултат на коцките. За првиот играч со од 1 до 104, а за вториот од 121 до  224
+	SetButtonDesable(int m)	Се онеовозможуваат Textbox-овите според нивниот Tabindex
+	TotalCalculate()	Се собираат вредностите на на Textbox-овите на играчите
+	SetNajavaEnableP1()
+SetOdjavaEnableP1()
+SetNajavaEnableP2()
+SetOdjavaEnableP2()	Према вредностите на индексите во низата така се оненозмножуваат Textbox-овите за најава и одјава
+Евенти: 	btnRoll_Click()	Во зависност кој е на ред ги врти коцките, три или пет пати
+	btnEndTurn_Click()	За да запише вредност во Texbox мора да кликне на тоа што сака да запише.
+	Клик Евенти (Click_Events)	При клик на Textbox-от се појавува вредност на свртените коцки
+	Leave_Events	При излегување на селектираниот Textbox се брипе вредноста
+	cbNajava_P1_SelectedIndexChanged()
+cbNajava_P2_SelectedIndexChanged()	При одбирање на итем од листата се онеобозможуваат сите Textbox-ови освен оној кој сте го одбрале 
+
+
+Класите во апликацијата се следните.
+
+Player.cs
+Game.cs
+Dice.cs
+Najava.cs
+Znak.cs
+
+
+Player.cs
+Променливи:	листа од  Dice (6 коцки), име (name), низа од вредност на коцки (diceResult) , рандом променлица (rnd), 
+број на  вртежи на коцки (rollTurns), максимална сума (sumaMax), минимална сума (sumaMin), вртежи на игра (gameTurns), завршени играчи (finished), резултат на играчот (score) и листа од знаци (znak).	
+Конструктори:	public Player();	помошен конструктор
+	public Player(string playerName, int gameTurns);	
+Медоди:
+	RollDice()	Во листата (Dice) се креираат 6 итеми со рандом вредности.
+	ResetDice()	Вредностите на итемите во листата (Dice) се 0
+	EndTurn()	Се декрементира вредноста на gameTurns и се проверува дали е играчот завршен.
+	GetDiceNumb()	Према вредноста на итемите во листата (Dice) и таа позиција на низата од diceResult се инкрементира вредноста
+	ReserDiceNumb()	Се сетираат на 0 вредностите во низата (diceResult)
+	GetResult()	Се прави проверка на вредноста на свртените коцки и се изполнува листата (Znak) која  има од 0 до 13 различни знака.
+	Print()	Ги принта добиените резултати на коцките заедно со вредностите што можат да се запишат во јамбот.
+
+
+Game.cs
+Променливи:	Листи на играчи (players) и листа на завршени играчи
+(playersFinished), кој е на ред (whoTurn), рандом  (rand)	
+Конструктор:	public Game(int pCount)	Конструкторот прима број на играчи и према тоа ги креира должините на листите
+Методи: 	public bool NextTurn()	При завржување на редот проверува дали е играчот завршен и менува редот на играчот (следнот играч доаѓа на ред)
+
+Dice.cs
+Променливи:	
+Вреднот на коцка (value), можност за вртење  (isHeld)	
+Конструктор:	public Dice(int diceValue)	
+
+
+Najava.cs
+Променливи:	Вредност  (value), име (ime) на најавата	
+Конструктор:	public Najava(int value)	
+Методи:	public override string ToString()	 Преоптоварување на операторот за печатење
+
+
+Znak.cs
+Променливи:	Вредност (value), име (ime) на знакот.	
+Конструктор:	public Znak(value, string ime)	
+Методи:	public override string ToString()	Преоптоварување на операторот за печатење
+
+
+
+Опис на функцијата:
+
+
+Опис на функцијата GetDiceNumb():
+Во листата од коцки List<Dice> dice се зимаат вредностите од шесте коцки. Според вредноста на коцката се инкрементира вредноста на низата diceResult. 
+
+public void GetDiceNumb()
+        {
+            for (int i = 0; i < dice.Count; i++)
+            {
+                switch (dice[i].Value)
+                {
+                    case 1:
+                        diceResult[0]++;
+                        break;
+                    case 2:
+                        diceResult[1]++;
+                        break;
+                    case 3:
+                        diceResult[2]++;
+                        break;
+                    case 4:
+                        diceResult[3]++;
+                        break;
+                    case 5:
+                        diceResult[4]++;
+                        break;
+                    case 6:
+                        diceResult[5]++;
+                        break;
+                }
+            }
+            GetResult();
+        }
+
+Опис на функцијата GetResult():
+Се креираат 10 итеми во листата List<Znak> znak, тие се слични како и со игрите со карти (Покер). Се пресметува собираат сите вредности на коцките и тоа ни е максимум (sumaMax). Се собираат сите квредности на коцки освен најголемата за одзема од таа сума и се добива минимумот (sumaMin). Листата се исполнува со итеми според добиениот знак. Знакот најпрвин се проверува: за трилинг треба во низата diceResult да има повеќе или три инкрементации, за покер треба да има повеќе или четири инкрементации, за јамб повеќе или пет инкрементации, а за скала треба бар секоја да има една инкрементација.  
+
+private void GetResult()
+        {
+           
+            int brMax = 0;
+            znak.Clear();
+            for (int i = 0; i < 10; i++)
+                znak.Insert(i, new Znak(0, " "));
+
+            sumaMax = 0;
+            for (int i = 0; i < dice.Count; i++)
+                sumaMax += dice[i].Value;
+
+
+            sumaMin = 0;
+            brMax = 0;
+
+            for (int i = 0; i < dice.Count; i++)
+            {
+                if (brMax < dice[i].Value)
+                    brMax = dice[i].Value;
+
+                sumaMin += dice[i].Value;
+            }
+            sumaMin -= brMax;
+
+
+            for (int i = 0; i < diceResult.Length; i++)
+            {
+                if (diceResult[i] >= 3)
+                {
+                    Triling = ((i + 1) * 3);
+                    if (TriMax < Triling)
+                        TriMax = Triling;
+                    znak.Insert(0, new Znak(TriMax + 30, "Трилинг"));
+
+                    for (int j = 0; j < diceResult.Length; j++)
+                    {
+                        if (diceResult[j] >= 2 && (j + 1) != (i + 1))
+                        {
+                            FullHouse = TriMax + ((j + 1) * 2) + 40;
+                            if (FullMax < FullHouse)
+                                FullMax = FullHouse;
+                            znak.Insert(1, new Znak(FullMax, "Фулхаус"));
+                            break;
+                        }
+                    }
+
+                    if (diceResult[i] >= 4)
+                    {
+                        znak.Insert(2, new Znak(((i + 1) * 4) + 50, "Покер"));
+
+                        if (diceResult[i] >= 5)
+                        {
+                            znak.Insert(3, new Znak(((i + 1) * 5) + 60, "Јамб од 5 (" + diceResult[i].ToString() + ")"));
+                            if ((i + 1) == 1)
+                                znak.Insert(4, new Znak(100, "Јамб од 5 (1)"));
+
+                            if (diceResult[i] >= 6)
+                            {
+                                znak.Insert(5, new Znak(100, "Јамб од 6 (" + diceResult[i].ToString() + ")"));
+                                if ((i + 1) == 1)
+                                    znak.Insert(6, new Znak(150, "Јамб од 6 (1)"));
+                            }
+                        }
+                    }
+                }
+                else if (diceResult[0] >= 1 && diceResult[1] >= 1 && diceResult[2] >= 1 && diceResult[3] >= 1 && diceResult[4] >= 1)
+                {
+                    znak.Insert(7, new Znak(45, "Скала од 1-5"));
+                    if (diceResult[0] == 1 && diceResult[1] == 1 && diceResult[2] == 1 && diceResult[3] == 1 && diceResult[4] == 1 && diceResult[5] == 1)
+                    {
+                        znak.Insert(9, new Znak(100, "Скала од 1-6"));
+                        break;
+                    }
+                }
+                else if (diceResult[1] >= 1 && diceResult[2] >= 1 && diceResult[3] >= 1 && diceResult[4] >= 1 && diceResult[5] >= 1)
+                {
+                    znak.Insert(8, new Znak(50, "Скала од 2-6"));
+                    if (diceResult[0] == 1 && diceResult[1] == 1 && diceResult[2] == 1 && diceResult[3] == 1 && diceResult[4] == 1 && diceResult[5] == 1)
+                    {
+                        znak.Insert(9, new Znak(100, "Скала од 1-6"));
+                        break;
+                    }
+                }
+            }
+
+            Print();
+        }
+
+
